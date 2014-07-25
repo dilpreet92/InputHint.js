@@ -1,10 +1,16 @@
-function InputHint (getElements) {
-  this.labelText = getElements.labelText;
-  this.hintInputElement = getElements.hintInputElement;
+function InputHint () {
+  this.labelText = "";
+  this.hintInputElement = $("input[name=q]");
 }
 
+InputHint.prototype.init = function() {
+  this.labelText = $("label[for=q]").remove().text();
+  this.blurInput();
+  this.bindEvents();
+};
+
 InputHint.prototype.blurInput =  function() {
-  if(this.hintInputElement.val()) {
+  if(!$.trim(this.hintInputElement.val()) == " ") {
     return;
   } else {
     this.hintInputElement.val(this.labelText);
@@ -21,13 +27,7 @@ InputHint.prototype.focusInput =  function() {
   }  
 };
 
-InputHint.prototype.removeLabel = function() {
-  $("label[for=q]").remove();
-};
-
 InputHint.prototype.bindEvents = function() {
-  this.removeLabel();
-  this.blurInput();
   var _this = this;
   this.hintInputElement.bind({
     "focus" : function() { _this.focusInput();},
@@ -35,14 +35,7 @@ InputHint.prototype.bindEvents = function() {
   });
 };
 
-$(document).ready(function() {
-  var elements = {
-    "labelText" : $("label[for=q]").text(),
-    "hintInputElement" : $("input[name=q]")
-  }    
-  var inputHint = new InputHint(elements);
-  inputHint.bindEvents();
+$(document).ready(function() {   
+  var inputHint = new InputHint();
+  inputHint.init();
 });
-
-
-
