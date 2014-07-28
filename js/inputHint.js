@@ -13,8 +13,7 @@ InputHint.prototype.blurInput =  function() {
   if($.trim(this.hintInputElement.val())) {
     return;
   } else {
-    this.hintInputElement.val(this.labelText);
-    this.hintInputElement.addClass("hint");
+    this.hintInputElement.val(this.labelText).addClass("hint");
   }
 };
 
@@ -22,8 +21,7 @@ InputHint.prototype.focusInput =  function() {
   if (this.hintInputElement.val() != this.labelText) {
     return;
   } else {
-    this.hintInputElement.val("");
-    this.hintInputElement.removeClass("hint");
+    this.hintInputElement.val("").removeClass("hint");
   }  
 };
 
