@@ -10,7 +10,7 @@ InputHint.prototype.init = function() {
 };
 
 InputHint.prototype.blurInput =  function() {
-  if(!$.trim(this.hintInputElement.val()) == " ") {
+  if($.trim(this.hintInputElement.val())) {
     return;
   } else {
     this.hintInputElement.val(this.labelText);
